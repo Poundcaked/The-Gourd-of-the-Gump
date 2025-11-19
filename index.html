@@ -4,26 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
     <body>
-        <h3 id="gumpcoin">bun</h3>
-        <h3 id="gumpmetal">bun</h3>
+        <div class="console">
+            <p class="consoleLine"><span>&nbsp;&gt;&nbsp;</span><span id="console5"></h4></p>
+            <p class="consoleLine"><span>&nbsp;&gt;&nbsp;</span><span id="console4"></h4></p>
+            <p class="consoleLine"><span>&nbsp;&gt;&nbsp;</span><span id="console3"></h4></p>
+            <p class="consoleLine"><span>&nbsp;&gt;&nbsp;</span><span id="console2"></h4></p>
+            <p class="consoleLine"><span>&nbsp;&gt;&nbsp;</span><span id="console1"></h4></p>
+        </div>
+
+        <div class="gumpCoinDiv">
+            <h3 id="gumpcoin">bun</h3>
+            <button id="makeButton">Forge a Gump Coin</button>
+        </div>
+        
         <h3 id="cash">bun</h3>
 
         <div class="priceDiv">
-            <h3 id="pricePerCoin">bun</h3>
-            <button id="decreasePriceButton">Decrease Price</button>
-            <button id="increasePriceButton">Increase Price</button>
+            <button class="priceInline" id="decreasePriceButton">Decrease Price</button>
+            <p class="priceInline" id="pricePerCoin">bun</p>
+            <button class="priceInline" id="increasePriceButton">Increase Price</button>
         </div>
 
-        <button id="makeButton">Forge a Gump Coin</button>
-        <br>
-        <button id="buyMetalButton">Buy more Gump Metal ()</button>
-        <br>
+
+        <div class="metalDiv">
+            <h3 id="gumpmetal">bun</h3>
+            <button id="buyMetalButton">Buy more Gump Metal ()</button>
+        </div>
+  
         <button id="sellButton">Sell Gump Coins</button>
-        <br>
-        <button id="saveButton">Save</button>
+
+        <div class="autosmelterDiv">
+            <h3 id="autosmelter">bun</h3>
+            <button id="makeAutosmelterButton">Construct AutoSmelter</button>
+        </div>
+
+        <button id="saveButton">save</button>
+        <button onclick="cheat()">cheat</button>
+        <button onclick="reset()">reset</button>
+
+        <div class="truevalues">
+            <p class="true_item" id="true_gc">Gumpcoins: </p><br>
+            <p class="true_item" id="true_gm">Gumpcoins: </p><br>
+            <p class="true_item" id="true_c">Gumpcoins: </p><br>
+            <p class="true_item" id="true_mp">Gumpcoins: </p><br>
+            <p class="true_item" id="true_ma">Gumpcoins: </p><br>
+            <p class="true_item" id="true_ppc">Gumpcoins: </p><br>
+            <p class="true_item" id="true_alvl">Gumpcoins: </p><br>
+            <p class="true_item" id="true_ap">Gumpcoins: </p><br>
+        </div>
+       
 
 
     </body>

@@ -1,0 +1,24 @@
+.console{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.consoleLine{
+    padding: 0px;
+    background-color: #000000;
+    color:white;
+    margin: 0px;
+}
+
+.priceDiv{
+    display: inline-block;
+}
+
+.priceInline{
+    display: inline;
+}
+
+.true_item{
+    display: inline;
+}
