@@ -7,7 +7,7 @@ var metal_price = 10.00
 
 var pricePerCoin = 0.10
 
-var autosmelterCost = 50
+var autosmelterCost = 25
 var autosmelterLvl = 0
 
 var saveTimer = 0;
@@ -24,7 +24,7 @@ window.setInterval(function(){ //auto save (taken almost directly from universal
 var autoBuildup = 0
 window.setInterval(function(){ //main loop
 
-    autoBuildup+= (autosmelterLvl/250)
+    autoBuildup+= (autosmelterLvl/100)
     if(autoBuildup > 1){
         smelt(1)
         autoBuildup = 0
@@ -34,7 +34,7 @@ window.setInterval(function(){ //main loop
     if (secTimer >= 10 * 360){
         var maxPrice = (((0.6*cash)+((0.6*gumpcoins)*(0.5*pricePerCoin)))/4)+10
         metal_price = Math.floor(Math.random() * (maxPrice - 3) ) + 3
-        metal_amount = Math.floor(Math.random() * (Math.pow(maxPrice,1.6) - 100) ) + 100
+        metal_amount = Math.floor(Math.random() * (Math.pow(maxPrice/1.5,1.34) - 100) ) + 100
         secTimer = 0;
         updateVariables()
     }
@@ -53,13 +53,13 @@ $(document).ready(function() {
     });
 
     $("#buyMetalButton").click(function() {
-        if(cash > metal_price){
+        if(cash >= metal_price){
             buyMetal(metal_amount, metal_price)
         }
     });
 
     $("#decreasePriceButton").click(function() {
-        if(pricePerCoin > 0){
+        if(pricePerCoin > 0.01){
             pricePerCoin = Number(Number(pricePerCoin - 0.01).toFixed(2))
             updateVariables()
         }
@@ -90,21 +90,28 @@ function makeGumpcoin(amt){
 
 function buyMetal(amt, price){
     gumpmetal += amt
-    cash -= price
-    updateVariables()
-}
-
-function useCash(amt){
-    cash += amt
+    cash -= Number(price.toFixed(2))
     updateVariables()
 }
 
 function sell(){
     const length = gumpcoins
+    var moneyGot = 0
+    var gumpCoinsSold = 0
     for (let index = 0; index < length; index++) {
-        cash += pricePerCoin
+        cash += Number(pricePerCoin.toFixed(2))
+        moneyGot += Number(pricePerCoin.toFixed(2))
+        
         gumpcoins -= 1
-        cash = Number(cash.toFixed(2))
+        gumpCoinsSold += 1
+    }
+
+    var cash2 = cash
+
+    cash = Number(cash2.toFixed(2))
+
+    if(moneyGot > 0 && gumpCoinsSold > 0){
+        displayMessage("Sold "+gumpCoinsSold+" for $"+Number(moneyGot).toFixed(2).toLocaleString())
     }
 }
 
@@ -168,6 +175,7 @@ function load(){
         }
     }
     updateVariables()
+    displayMessage("Loaded save")
 }
 
 function displayMessage(msg){
@@ -181,9 +189,12 @@ function displayMessage(msg){
 function makeAutosmelter(){
     if(cash >= autosmelterCost){
         autosmelterLvl += 1;
-        cash -= autosmelterCost;
-        autosmelterCost = Math.pow(1.1,autosmelterLvl)+50;
+        cash -= Number(autosmelterCost.toFixed(2));
+        autosmelterCost = Math.pow(1.55,autosmelterLvl)+25;
         updateVariables();
+
+        var cash2 = cash
+        cash = Number(cash2.toFixed(2))
     }
 }
 
